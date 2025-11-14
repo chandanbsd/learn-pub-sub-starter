@@ -22,12 +22,14 @@ func main() {
 	signalChan := make(chan os.Signal, 1)
 	signal.Notify(signalChan, os.Interrupt)
 	
-	for _ = range signalChan {
-		fmt.Printf("Interrupt signal received. Shutting down gracefully.")
-		os.Exit(0)
-	}
+
 
 	fmt.Print("rabbitmq connection successfully established")
 
 	fmt.Println("Starting Peril server...")
+
+		for _ = range signalChan {
+		fmt.Printf("Interrupt signal received. Shutting down gracefully.")
+		os.Exit(0)
+	}
 }
